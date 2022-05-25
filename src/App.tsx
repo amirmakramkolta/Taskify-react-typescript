@@ -2,6 +2,7 @@ import InputField from './components/Input/InputField';
 import './App.css';
 import React, { useState } from 'react';
 import { Todo } from './models/model';
+import ToDoList from './components/ToDoList/ToDoList';
 
 function App() {
   const [todo, setTodo] = useState<string>("")
@@ -29,6 +30,7 @@ function App() {
     <div className="App">
       <h1 className='heading'>taskify</h1>
       <InputField todo={todo} setTodo={setTodo} handleAdd={handleAdd}/>
+      <ToDoList todos={todos} setTodos={setTodos} />
     </div>
   );
 }
