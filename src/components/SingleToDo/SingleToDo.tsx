@@ -11,7 +11,7 @@ type Props = {
 }
 
 const SingleToDo:React.FC<Props> = ({todo,todos,setTodos})=>{
-    function handlerDone(id:number) {
+    function handleDone(id:number) {
         setTodos(pre=>{
             return(pre.map(todo=>{
                 if(todo.id===id){
@@ -22,17 +22,23 @@ const SingleToDo:React.FC<Props> = ({todo,todos,setTodos})=>{
             }))
         })
     }
+
+    function handleDelete(id: number) {
+        setTodos(pre=>pre.filter(todo=>todo.id!==id));
+    }
+    
     return (
         <form className="todos-single">
             <span className="todos-single-text" style={todo.done?{textDecoration:"line-through"}:{textDecoration:"none"}}>{todo.todo}</span>
             <div>
                 <span className="todos-single-icons"><AiFillEdit /></span>
-                <span className="todos-single-icons"><AiFillDelete /></span>
-                <span className="todos-single-icons" onClick={()=>{handlerDone(todo.id)}}><MdDone /></span>
+                <span className="todos-single-icons"><AiFillDelete onClick={()=>{handleDelete(todo.id)}} /></span>
+                <span className="todos-single-icons" onClick={()=>{handleDone(todo.id)}}><MdDone /></span>
             </div>
         </form>
     )
 }
 
 export default SingleToDo;
+
 
